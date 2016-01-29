@@ -1,7 +1,0 @@
-Copy pythonKit folder in document root of your server (like /var/www/html)
-
-pythonKit folder is having following files:
-test.cgi – Testing transaction through Paytm gateway.Put your Paytm parameters here
-CheckSum.py – This file has the logic of checksum generation and verification.
-response.cgi – This file has the logic for processing PG response after the transaction processing.
-
