@@ -2,7 +2,7 @@
 This sample kit is ready to be deployed and tested.
 
 # Instructions
- 1. Copy the *pythonKit* folder(according to ypur python version) into the root folder of your server (like /var/www/html)
+ 1. Copy the *pythonKit* folder(according to your python version) into the root folder of your server (like /var/www/html)
  2. **Mandatory Step**: For each test transaction, please change the value of the parameter "ORDER_ID" in the test.cgi file.
 
 # Usage Description
