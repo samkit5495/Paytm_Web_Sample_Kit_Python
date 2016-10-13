@@ -10,3 +10,7 @@ The *pythonKit* folder has the following files:
  1. CheckSum.py – This file has the logic for checksum generation and verification.
  2. test.cgi – This file will initiate the sample test transaction through the Paytm gateway. Paytm parameters need to be added in this file.
  3. response.cgi – This file has the logic for processing PG response after the transaction processing.
+ 
+ # For Offline(Wallet Api) Checksum Utility below are the methods:
+  1. generate_checksum_by_str : For generating the checksum
+  2. verify_checksum_by_str : For verifing the checksum
