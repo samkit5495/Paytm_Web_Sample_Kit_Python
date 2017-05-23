@@ -22,6 +22,22 @@ def generate_checksum(param_dict, merchant_key, salt=None):
 
     return __encode__(hash_string, IV, merchant_key)
 
+def generate_refund_checksum(param_dict, merchant_key, salt=None):
+    for i in param_dict:    
+    if("|" in param_dict[i]):
+        param_dict = {}
+        exit()
+    params_string = __get_param_string__(param_dict)
+    salt = salt if salt else __id_generator__(4)
+    final_string = '%s|%s' % (params_string, salt)
+
+    hasher = hashlib.sha256(final_string.encode())
+    hash_string = hasher.hexdigest()
+
+    hash_string += salt
+
+    return __encode__(hash_string, IV, merchant_key)
+
 
 def generate_checksum_by_str(param_str, merchant_key, salt=None):
     params_string = param_str
