@@ -29,7 +29,7 @@ param_dict['CHECKSUMHASH'] =Checksum.generate_checksum(data_dict, MERCHANT_KEY)
  #   print key.strip()+param_dict[key].strip()
 
 print '<h1>Merchant Check Out Page</h1></br>'
-print '<form method="post" action="https://pguat.paytm.com/oltp-web/processTransaction" name="f1">'
+print '<form method="post" action="https://securegw-stage.paytm.in/theia/processTransaction" name="f1">'
 print '<table border="1">'
 print '<tbody>'
 for key in param_dict:
