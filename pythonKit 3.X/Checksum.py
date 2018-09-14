@@ -24,9 +24,9 @@ def generate_checksum(param_dict, merchant_key, salt=None):
 
 def generate_refund_checksum(param_dict, merchant_key, salt=None):
     for i in param_dict:    
-    if("|" in param_dict[i]):
-        param_dict = {}
-        exit()
+        if("|" in param_dict[i]):
+            param_dict = {}
+            exit()
     params_string = __get_param_string__(param_dict)
     salt = salt if salt else __id_generator__(4)
     final_string = '%s|%s' % (params_string, salt)
@@ -82,7 +82,10 @@ def __id_generator__(size=6, chars=string.ascii_uppercase + string.digits + stri
 
 def __get_param_string__(params):
     params_string = []
-    for key in sorted(params.iterkeys()):
+    for key in sorted(params.keys()):
+        if("REFUND" in params[key] or "|" in params[key]):
+            respons_dict = {}
+            exit()
         value = params[key]
         params_string.append('' if value == 'null' else str(value))
     return '|'.join(params_string)
@@ -100,7 +103,7 @@ def __encode__(to_encode, iv, key):
     to_encode = c.encrypt(to_encode)
     # Encode
     to_encode = base64.b64encode(to_encode)
-    return to_encode
+    return to_encode.decode("UTF-8")
 
 
 def __decode__(to_decode, iv, key):
@@ -127,8 +130,8 @@ if __name__ == "__main__":
         "WEBSITE": "xxxxxxxxxxx"
     }
 
-    print verify_checksum(
+    print(verify_checksum(
         params, 'xxxxxxxxxxxxxxxx',
-        "CD5ndX8VVjlzjWbbYoAtKQIlvtXPypQYOg0Fi2AUYKXZA5XSHiRF0FDj7vQu66S8MHx9NaDZ/uYm3WBOWHf+sDQAmTyxqUipA7i1nILlxrk=")
+        "CD5ndX8VVjlzjWbbYoAtKQIlvtXPypQYOg0Fi2AUYKXZA5XSHiRF0FDj7vQu66S8MHx9NaDZ/uYm3WBOWHf+sDQAmTyxqUipA7i1nILlxrk="))
 
-    # print generate_checksum(params, "xxxxxxxxxxxxxxxx")
+    # print(generate_checksum(params, "xxxxxxxxxxxxxxxx"))

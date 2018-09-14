@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import Checksum
 import requests
@@ -6,8 +6,8 @@ import base64
 import json
 import requests
 
-print "Content-type: text/html\n"
-MERCHANT_KEY = 'kbzk1DSbJiV_O3p5';
+print("Content-type: text/html\n")
+MERCHANT_KEY = 'xxxxxxxxxxxxxxxx';
 import cgi
 
 form = cgi.FieldStorage()
@@ -27,8 +27,8 @@ print verify
 
 if verify:
 	if respons_dict['RESPCODE'] == '01':
-		print "order successful";
+		print("order successful")
 	else:
-		print "order unsuccessful because"+respons_dict['RESPMSG'];
+		print("order unsuccessful because"+respons_dict['RESPMSG'])
 else: 
-	print "order unsuccessful because"+respons_dict['RESPMSG'];
+	print("order unsuccessful because"+respons_dict['RESPMSG'])
