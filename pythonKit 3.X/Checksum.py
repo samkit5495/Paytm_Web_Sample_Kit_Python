@@ -85,6 +85,9 @@ def __id_generator__(size=6, chars=string.ascii_uppercase + string.digits + stri
 def __get_param_string__(params):
     params_string = []
     for key in sorted(params.keys()):
+        if "REFUND" in params[key] or "|" in params[key]:
+            respons_dict = {}
+            exit()
         value = params[key]
         params_string.append('' if value == 'null' else str(value))
     return '|'.join(params_string)
@@ -102,7 +105,7 @@ def __encode__(to_encode, iv, key):
     to_encode = c.encrypt(to_encode)
     # Encode
     to_encode = base64.b64encode(to_encode)
-    return to_encode
+    return to_encode.decode("UTF-8")
 
 
 def __decode__(to_decode, iv, key):
@@ -129,6 +132,8 @@ if __name__ == "__main__":
         "WEBSITE": "xxxxxxxxxxx"
     }
 
-    print(verify_checksum(params, 'xxxxxxxxxxxxxxxx','IFZRhThqzLvPOHa4lQBzFZOwz9//qYoGy7nTihGDsoRL/8i8Cq/aTq7/clAwA4tSTFgS+pfmDnzPXVAbCAv0AfmgGpWi+wh6F/7yXK3/BoA='))
+    print(verify_checksum(
+        params, 'xxxxxxxxxxxxxxxx',
+        "CD5ndX8VVjlzjWbbYoAtKQIlvtXPypQYOg0Fi2AUYKXZA5XSHiRF0FDj7vQu66S8MHx9NaDZ/uYm3WBOWHf+sDQAmTyxqUipA7i1nILlxrk="))
 
     # print(generate_checksum(params, "xxxxxxxxxxxxxxxx"))
